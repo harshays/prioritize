@@ -11,21 +11,21 @@ from ..models import User
 def login():
     form = LoginForm 
     if request.method == "GET":
-        return "Login page"
+        return render_template("base.html")
     
     if form.validate_on_submit():
         user = User.get_username(form.username.data)
         login_user(user, form.remember_me.data)
         return redirect('/')
 
-    return "Login page"
+    return render_template("base.html")
 
 @auth.route("/register", methods = ["GET", "POST"])
 def register():
     form = RegisterForm()
 
     if request.method == "GET":
-        return "Register Page"
+        return render_template("base.html")
     
     elif request.method == "POST":
         if form.validate_on_submit():
@@ -35,7 +35,7 @@ def register():
             login_user(newuser, False)
             return redirect('/')
         
-        return "Register Page"
+        return render_template("base.html")
   
 
 @auth.route('/logout')
@@ -43,5 +43,6 @@ def register():
 def logout():
     logout_user()
     flash("You've been logged out")
+    redirect("/")
 
     
