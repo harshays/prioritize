@@ -1,0 +1,37 @@
+<!-- @author:Harshay Shah -->
+<!-- @email:harshay.rshah@gmail.com -->
+<!DOCTYPE html>
+<html>
+<head>
+    {% block title %}
+        <title>Prioritize.</title>  
+    {% endblock %}
+
+    <!-- Metas -->
+    <meta type="author" content="Harshay Shah"/>
+    <meta type="description" content="Prioritize."/>
+    <meta name="viewport" content="initial-scale=1"/>
+    <meta name="viewport" content="width=device-width,maximum-scale=1.0"/>
+    <meta http-eqiv="content-type" content="text/html; charset=utf-8"/>
+    <link rel="icon" type="image/png" href="{{url_for('static',filename='./img/favicon.ico')}}">
+    <!-- Lib -->
+    <link href='http://fonts.googleapis.com/css?family=Raleway:300,200,100' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" type="text/css" href="{{url_for('static',filename='./bower_components/skeleton/css/normalize.css')}}">
+    <link rel="stylesheet" type="text/css" href="{{url_for('static',filename='./bower_components/skeleton/css/skeleton.css')}}">
+    <link rel="stylesheet" type="text/css" href="{{url_for('static',filename='./bower_components/animate.css/animate.min.css')}}">
+
+    <!-- CSS -->
+    <link rel="stylesheet" type="text/css" href="{{url_for('static',filename='./css/base.css')}}">
+    {% block css %} {% endblock %}
+
+    <!-- Scripts -->
+    <script type="text/javascript" src="{{url_for('static',filename='./bower_components/jquery/dist/jquery.min.js')}}"></script>
+    <script type="text/javascript" src="{{url_for('static',filename='./js/base.js')}}"></script>
+    {% block js %} {% endblock %}
+
+</head>
+<body>
+    <div class="container animated fadeIn">
+        {% block body %} {% endblock %}
+    </div>
+</body>
