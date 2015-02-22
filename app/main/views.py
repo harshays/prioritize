@@ -14,4 +14,4 @@ def page_not_found(e):
 
 @main.route('/',methods=["GET","POST"])
 def index():
-    return "landing page"
+    return render_template("index.html")
