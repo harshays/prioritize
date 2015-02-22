@@ -16,9 +16,8 @@
     <link rel="icon" type="image/png" href="{{url_for('static',filename='./img/favicon.ico')}}">
     <!-- Lib -->
     <link href='http://fonts.googleapis.com/css?family=Raleway:300,200,100' rel='stylesheet' type='text/css'>
-    <link rel="stylesheet" type="text/css" href="{{url_for('static',filename='./bower_components/skeleton/css/normalize.css')}}">
-    <link rel="stylesheet" type="text/css" href="{{url_for('static',filename='./bower_components/skeleton/css/skeleton.css')}}">
-    <link rel="stylesheet" type="text/css" href="{{url_for('static',filename='./bower_components/animate.css/animate.min.css')}}">
+    <link rel="stylesheet" type="text/css" href="{{url_for('static',filename='./bower_components/bootstrap/dist/css/bootstrap.min.css')}}">
+    
 
     <!-- CSS -->
     <link rel="stylesheet" type="text/css" href="{{url_for('static',filename='./css/base.css')}}">
@@ -26,6 +25,7 @@
 
     <!-- Scripts -->
     <script type="text/javascript" src="{{url_for('static',filename='./bower_components/jquery/dist/jquery.min.js')}}"></script>
+    <script src="{{url_for('static',filename='./bower_components/bootstrap/dist/js/bootstrap.min.js')}}"></script>
     <script type="text/javascript" src="{{url_for('static',filename='./js/base.js')}}"></script>
     {% block js %} {% endblock %}
 
