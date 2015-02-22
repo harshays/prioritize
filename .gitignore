@@ -70,3 +70,4 @@ pip-selfcheck.json
 
 .env
 .bowerrc
+.gitignore
