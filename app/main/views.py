@@ -4,7 +4,6 @@ from . import main
 from .. import db 
 # from ../models import User, Todo
 
-
 @main.app_errorhandler(404)
 def page_not_found(e):
     return "Implement common error page", 404 
