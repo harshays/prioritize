@@ -6,12 +6,13 @@ from ..models import User
 
 def username_exist(form, field):
     l = User.query.filter_by(username=form.username.data).all()
-    if l != 0:
+    print l
+    if len(l) != 0:
         raise ValidationError("Username already exists. Try something else.")
 
 def username_dne(form, field):
     l = User.query.filter_by(username=form.username.data).all()
-    if l == 0:
+    if len(l) == 0:
         raise ValidationError("Username does not exist. Try again.")
 
 def password_wrong(form, field):

@@ -1,0 +1,34 @@
+.form-group > input {
+    height: 80px;
+    font-size: 3em;
+    outline: none;
+    border: none;
+    border-radius: 0;
+    border-bottom: 1px solid #4d80b7;
+    -webkit-box-shadow: none !important;
+    -moz-box-shadow: none !important;
+    box-shadow: none !important;
+    text-align: center;
+    transition: none;
+}
+
+.form-group > input:focus {
+    outline: none;
+}
+
+input::-webkit-input-placeholder {
+   opacity: 0.5;
+}
+
+input:-moz-placeholder { /* Firefox 18- */
+   opacity: 0.5;  
+}
+
+input::-moz-placeholder {  /* Firefox 19+ */
+   opacity: 0.5;  
+}
+
+input:-ms-input-placeholder {  
+   opacity: 0.5;  
+}
+

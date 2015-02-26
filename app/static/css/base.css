@@ -1,9 +1,44 @@
+* {
+    font-family: "Raleway";
+}
+
 body {
-    background-color:#ededef;
+    background-color: white;
     font-family: "Raleway"
 }
 
 p,a {
     font-weight: 200;
     color: #4d80b7;
+}
+
+.hr-style {
+    border: 0;
+    height: 0;
+    border-top: 1px solid rgba(0, 0, 0, 0.1);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.3);
+}
+
+.btn {
+    background-color: #4d80b7;
+    color: white;
+    -webkit-transition: all 0.2s;
+    -moz-transition: all 0.2s;
+    -o-transition: all 0.2s;
+    transition: all 0.2s;
+
+}
+
+.btn:hover {
+    color: #4d80b7;
+    background-color: #ededef;
+}
+
+.nav {
+    width: 90%;
+    margin: 0 auto;
+}
+
+.button-div {
+    margin-bottom: 4%;
 }

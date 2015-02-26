@@ -5,13 +5,13 @@
 {% endblock %}
 
 {% block js %}
-    <link rel="stylesheet" type="text/css" href="{{url_for('static', filename='js/index.js') }}">
+    <script src="{{url_for('static', filename='js/index.js') }}"> </script>
 {% endblock %}
 
 {% block body %}
     <div class="row main">
             <p class="header"> Prioritize<span>.</span></p>
-            <a href="/auth/login"><button type="button" class="btn btn-primary button">Get Started</button></a>      
+            <a href="/auth/login"><button type="button" class="btn btn-primary button">Sign up</button></a>      
     </div>
 {% endblock %}
 

@@ -1,0 +1,23 @@
+{% extends "base.html" %}
+
+{% block css %}
+    <link rel="stylesheet" type="text/css" href="{{url_for('static', filename='css/register.css') }}">
+{% endblock %}
+
+{% block js %}
+    <script src="{{url_for('static', filename='js/register.js') }}"> </script>
+{% endblock %}
+
+{% block body %}
+    <div class="row">
+        <div class="col-md-4"></div>
+        <div class="col-md-4 auth">
+            <p class="header text-center">Register</p>
+            
+            <hr class="hr-style">
+            {{ wtf.quick_form(form) }}
+            <p class="text-center">Already a member? <a href="/auth/login">Sign in</a> </p>
+        </div>
+        <div class="col-md-4"></div>
+    </div>
+{% endblock %}
