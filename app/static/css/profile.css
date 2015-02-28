@@ -1,34 +1,83 @@
+.hr-style {
+    border: 0;
+    height: 0;
+    border-bottom: 1px solid white;
+}
+
 .form-group > input {
-    height: 80px;
-    font-size: 3em;
+    height: 40px;
+    width: 90%;
+    background-color: #4d80b7;
+    font-size: 1.4em;
     outline: none;
     border: none;
     border-radius: 0;
-    border-bottom: 1px solid #4d80b7;
+    color: white;
+    border-bottom: 1px solid white;
     -webkit-box-shadow: none !important;
     -moz-box-shadow: none !important;
     box-shadow: none !important;
     text-align: center;
     transition: none;
+    padding: 0;
+    margin: 0;
 }
 
 .form-group > input:focus {
+    color: white;
     outline: none;
 }
 
-input::-webkit-input-placeholder {
-   opacity: 0.5;
+::-webkit-input-placeholder { /* WebKit browsers */
+    color:    #909;
+}
+:-moz-placeholder { /* Mozilla Firefox 4 to 18 */
+   color:    #909;
+   opacity:  1;
+}
+::-moz-placeholder { /* Mozilla Firefox 19+ */
+   color:    #909;
+   opacity:  1;
+}
+:-ms-input-placeholder { /* Internet Explorer 10+ */
+   color:    #909;
 }
 
-input:-moz-placeholder { /* Firefox 18- */
-   opacity: 0.5;  
+.subheader {
+  font-weight: 400;
 }
 
-input::-moz-placeholder {  /* Firefox 19+ */
-   opacity: 0.5;  
+.leftContainer {
+  padding: 3%;
+  color: white;
+  background-color: #4d80b7;
+  min-height: 100%;
 }
 
-input:-ms-input-placeholder {  
-   opacity: 0.5;  
+.rightContainer {
+  padding: 3%;
 }
 
+.todoContainer, .doneContainer {
+  padding: 2%;
+}
+
+.subheader {
+  font-weight: 400;
+  text-align: center;
+  font-size: 1.1em;
+}
+
+.time {
+  text-align: center;
+  font-size: 4em;
+  color: white;
+  font-weight: 400;
+}
+
+
+
+#todo::-webkit-input-placeholder {
+  opacity: 0.4;
+  color: white;
+}

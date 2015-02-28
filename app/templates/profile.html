@@ -5,23 +5,46 @@
 {% endblock %}
 
 {% block js %}
+<script src="{{url_for('static', filename='bower_components/moment.js') }}"> </script>
     <script src="{{url_for('static', filename='js/profile.js') }}"> </script>
 {% endblock %}
 
+
 {% block body %}
-    <div class="row addTodo">
+    <div class="row mainContainer">
+        <div class="col-xs-6 leftContainer">
+            <div class="addTodo text-center">
+                {{ wtf.quick_form(form) }}
+            </div>
+    <br>
+        <div class="timeContainer">
+            <p class="time">
+            
+            </p>
+        </div>
+        </div>
+        <div class="col-xs-6 rightContainer">
+            <div class="todoContainer">
+                <p class="subheader"><b>TASKS REMAINING</b></p>
+                <ul class="todos">
+                    {% for task in td %}
+                        <ul class="todo">{{task.description}}</ul>
+                    {% endfor %}
+                </ul>
+            </div>
+            <div class="doneContainer">
+                <p class="subheader"><b>TASKS COMPLETED</b></p>
+            </div>
+        </div>
+    </div>
+
+<!--     <div class="row addTodo">
         <div class="col-xs-2"></div>
         <div class="col-xs-8 text-center">
             {{ wtf.quick_form(form) }}
         </div>
         <div class="col-xs-2"></div>
-    </div>
+    </div> -->
 
-    <div class="row showTodo">
-        <div class="col-xs-3"></div>
-        <div class="col-xs-6">
 
-        </div>
-        <div class="col-xs-3"></div>
-    </div>
 {% endblock %}

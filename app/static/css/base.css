@@ -7,7 +7,7 @@ body {
     font-family: "Raleway"
 }
 
-p,a {
+p,a, h3 {
     font-weight: 200;
     color: #4d80b7;
 }
@@ -41,4 +41,7 @@ p,a {
 
 .button-div {
     margin-bottom: 4%;
+}
+
+.doContainer {
 }

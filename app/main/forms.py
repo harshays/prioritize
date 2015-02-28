@@ -4,5 +4,5 @@ from wtforms import TextField, SubmitField, ValidationError, PasswordField, Bool
 # from ..models import User, 
 
 class TodoForm(Form):
-    todo = TextField("", [validators.Length(3,150)])
-    submit = SubmitField("Add")
+    todo = TextField("", [validators.DataRequired()])
+    submit = SubmitField("Add task")
