@@ -67,7 +67,7 @@ class Todo(db.Model):
     def __init__(self, description, hashtag = "", created_at = datetime.utcnow(), creator = current_user):
         self.description = description 
         self.created_at = created_at
-        self.hashtag = self.hashtag + hashtag if self.hashtag != None else hashtag
+        self.hashtag = self.hashtag + " " + hashtag if self.hashtag != None else hashtag
         self.creator = creator.username if creator != None else ""
 
     def save(self):

@@ -15,6 +15,11 @@ def username_dne(form, field):
     if len(l) == 0:
         raise ValidationError("Username does not exist. Try again.")
 
+def username_one_word(form, field):
+    n = form.username.data.split()
+    if len(n) > 1:
+        raise ValidationError("Username must be one word.")
+
 def password_wrong(form, field):
     user = User.query.filter_by(username=form.username.data).first()
     if user == None:
@@ -23,16 +28,17 @@ def password_wrong(form, field):
         raise ValidationError("Incorrect password and username combination")
 
 class LoginForm(Form):
-    username = TextField("Username", [validators.DataRequired(), username_dne])
+    username = TextField("Username", [validators.DataRequired(), username_dne, username_one_word])
     password = PasswordField("Password", [validators.DataRequired(), password_wrong])
     remember_me = BooleanField("Remember Me")
     submit = SubmitField("Sign in")
 
 class RegisterForm(Form):
-    username = TextField("Username", [validators.Length(5,25), username_exist])
+    username = TextField("Username", [validators.Length(5,25), username_exist, username_one_word])
     password = PasswordField("Password",[validators.length(7, 25), validators.EqualTo('retype_password', message = "Passwords must match")])
     retype_password = PasswordField("Retype Password", [validators.DataRequired()])
     submit = SubmitField("Create Account")
+
 
         
 
