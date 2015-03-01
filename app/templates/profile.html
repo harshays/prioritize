@@ -12,39 +12,80 @@
 
 {% block body %}
     <div class="row mainContainer">
-        <div class="col-xs-6 leftContainer">
+        <div class="col-sm-5 leftContainer text-center">
+            <div class="timeContainer text-center">
+                <p class="time"></p>
+                <p class="day"></p>
+            </div>
+            <br>
             <div class="addTodo text-center">
                 {{ wtf.quick_form(form) }}
             </div>
-    <br>
-        <div class="timeContainer">
-            <p class="time">
-            
-            </p>
-        </div>
-        </div>
-        <div class="col-xs-6 rightContainer">
-            <div class="todoContainer">
-                <p class="subheader"><b>TASKS REMAINING</b></p>
-                <ul class="todos">
-                    {% for task in td %}
-                        <ul class="todo">{{task.description}}</ul>
-                    {% endfor %}
+
+            <div class="utils">
+                <ul class="nav nav-pills nav-justified leftNav">
+                    <li class="active tags"><a href="#">Tags</a></li>
+                    <li class="completed"><a href="#">Tasks Completed</a></li>
                 </ul>
+                <div class="tagsActive">
+                    <div class="row text-left">
+                        <div class="col-sm-2"></div>
+                        <div class="col-sm-8">
+                            <p>All<span class="pull-right">{{sz}}</span></p>    
+                        </div>
+                        <div class="col-sm-2"></div>
+                    </div>
+                    {% for hashtg, count in hsh.items() %}
+                    <div class="row text-left">
+                        <div class="col-sm-2"></div>
+                        <div class="col-sm-8">
+                            <p>{{hashtg}} <span class="pull-right">{{count}}</span></p>    
+                        </div>
+                        <div class="col-sm-2"></div>
+                    </div>
+                    {% endfor %}
+                </div>    
+                <div class="completedActive">
+                    <div class="row text-left">
+                        <div class="col-sm-2"></div>
+                        <div class="col-sm-8">
+                            <p> No tasks completed yet. </span></p>    
+                        </div>
+                        <div class="col-sm-2"></div>
+                    </div>
+                </div>
             </div>
-            <div class="doneContainer">
-                <p class="subheader"><b>TASKS COMPLETED</b></p>
+            
+        </div>
+        <div class="col-sm-7 rightContainer">
+            <div class="todoContainer">
+                <div class="subheaderDiv">
+                    {% if sz == 1 %}
+                        <p class="subheader"><b>{{sz}} TASK</b></p>
+                    {% else %}
+                        <p class="subheader"><b>{{sz}} TASKS</b></p>
+                    {% endif %}
+                        
+                </div>
+                
+                <ul class="todos list-unstyled">
+                    {% if td == [] %}
+                        <p>No tasks remaining. <i class="fa fa-smile-o"></i></p>
+                    {% else %}
+                        {% for task in td %}
+                            <li class="todo row">
+                                <div id="{{task.id}}" class="col-xs-2 check text-center"><i class="check fa fa-circle-o"></i></div>
+                                <div class="col-xs-7 description">{{task.description}}</div>
+                                <div class="col-xs-3 hashtags">{{task.hashtag}} </div> 
+                                <!-- <div class="col-md-2 daysago">{{task.created_at}}</div> -->
+                            </li>
+                        {% endfor %}
+                    {% endif %}
+                </ul>
             </div>
         </div>
     </div>
 
-<!--     <div class="row addTodo">
-        <div class="col-xs-2"></div>
-        <div class="col-xs-8 text-center">
-            {{ wtf.quick_form(form) }}
-        </div>
-        <div class="col-xs-2"></div>
-    </div> -->
 
 
 {% endblock %}
