@@ -1,3 +1,3 @@
 #### Prioritize
 <hr>
-Work in progress.
+A Flask web application for task management.
