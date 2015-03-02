@@ -1,10 +1,10 @@
 .main {
-    padding: 15%;
+    padding: 9%;
     text-align: center;
 }
 
 .header {
-    font-size: 7em;
+    font-size: 8em;
     font-weight: 100;
 }
 
@@ -13,17 +13,3 @@
     font-weight: 300;
 }
 
-/*.button {
-    background-color: #4d80b7;
-    color: white;
-    -webkit-transition: all 0.2s;
-    -moz-transition: all 0.2s;
-    -o-transition: all 0.2s;
-    transition: all 0.2s;
-
-}
-
-.button:hover {
-    color: #4d80b7;
-    background-color: #ededef;
-}*/

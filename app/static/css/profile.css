@@ -62,12 +62,12 @@
 .nav-pills li a, .nav-pills li a:hover, .nav-pills li a:active, .nav-pills li a:visited, .nav-pills li a:link   {
   color: white;
   border-radius: 0;
-  border-bottom: 1px solid white;
+  /*border-bottom: 1px solid white;*/
   background-color: #4d80b7;
 }
 
 .nav-pills .active {
-  border-bottom: 3px solid white;
+  border: 3px solid white;
   background-color: #4d80b7;
 }
 
@@ -127,5 +127,21 @@
 }
 
 .hashtags {
-  color: #828282;
+  opacity: 0.6;
+}
+
+.completedTodo {
+  padding: 1%;
+  margin: 1%;
+}
+
+.allTags {
+  cursor: pointer;
+  opacity: 0.9;
+}
+
+.activeTag * {
+  opacity: 1;
+  font-weight: 400;
+  font-size: 1.1em;
 }

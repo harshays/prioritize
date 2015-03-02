@@ -37,6 +37,8 @@ $(document).ready(function() {
     $(window).resize(function() {
         var height = $(window).height();
         $('.mainContainer').css('height', height);
+        $('.rightContainer').css('max-height', height);
+        $('.rightContainer').css('overflow', "auto");
     });
 
     // placeholder
@@ -64,21 +66,101 @@ $(document).ready(function() {
         $('.leftNav li').removeClass('active');
         $(this).addClass('active');
         if ($(this).hasClass('tags')) {
-            $('.tagsActive').css("display","block");
-            $('.completedActive').css('display','none');
+            $('.tagsActive').fadeIn('fast');
+            $('.completedActive').hide();
         } else if ($(this).hasClass('completed')) {
-            $('.tagsActive').css('display','none');
-            $('.completedActive').css("display","block");
+            $('.tagsActive').hide();
+            $('.completedActive').fadeIn('fast');
         }
     });
 
+    $('.todo').hover(function() {
+        $(this).find('.check').css({
+            "color": "#26ba15"
+        });
+    }, function() {
+        $(this).find('.check').css({
+            "color": '#4d80b7'
+        });
+    });
+
+
     // change checkbox
-    $(".check").click(function() {
+    $(".check").on('click', function() {
+        $(this).off('click');
+        var post_url = "/done/"+$(this).get(0).id;
         var fa = '<i class="fa fa-circle check-done animated fadeIn"></i>';
         $(this).text("");
         $(this).append($(fa));
         $(this).next().css("text-decoration","line-through");
         $(this).parent().fadeOut();
+        $.ajax({
+            type: "POST",
+            contentType: "application/json; chartype=utf-8",
+            url: post_url,
+            success: function(response) {
+                window.location.href = response;
+            }
+        });
+    });
+
+    // undo completed task
+    $(".times").on("click", function() {
+        var post_url = "/done/"+$(this).get(0).id;
+        $(this).parent().fadeOut();
+        
+        $.ajax({
+            type: "POST",
+            contentType: "application/json; chartype=utf-8",
+            url: post_url,
+            success: function(response) {
+                window.location.href = response;
+            }
+        });
+    });
+
+    // delete completed task
+    $(".trash").on("click", function() {
+        var post_url = "/deleteTodo/"+$(this).get(0).id;
+        $(this).parent().fadeOut();
+        $.ajax({
+            type: "POST",
+            contentType: "application/json; chartype=utf-8",
+            url: post_url,
+            success: function() {
+                console.log("deleted");
+            }
+        });
+    });
+
+
+    // filter tags 
+
+    function filterByTag(tag) {
+        $(".todo").each(function(e) {
+            var tags = $(this).find(".hashtags").text();
+            if (tags.indexOf(tag) < 0) {
+                $(this).css({
+                    "opacity":"0.2"
+                });
+            } else {
+                $(this).css({
+                    "opacity":"1"
+                });
+            }
+        });
+    }
+
+
+    $(".allTags").on("click", function() {
+        $(".allTags").removeClass("activeTag");
+        $(this).addClass("activeTag");
+        var thetag = $(this).find(".thetag").text()
+        filterByTag(thetag);
     });
 
 });
+
+
+
+
