@@ -29,30 +29,45 @@
                 </ul>
                 <div class="tagsActive">
                     <div class="row text-left">
-                        <div class="col-sm-2"></div>
-                        <div class="col-sm-8">
+                        <div class="col-xs-2"></div>
+                        <div class="col-xs-8 allTags activeTag">
                             <p>All<span class="pull-right">{{sz}}</span></p>    
                         </div>
-                        <div class="col-sm-2"></div>
+                        <div class="col-xs-2"></div>
                     </div>
                     {% for hashtg, count in hsh.items() %}
                     <div class="row text-left">
-                        <div class="col-sm-2"></div>
-                        <div class="col-sm-8">
-                            <p>{{hashtg}} <span class="pull-right">{{count}}</span></p>    
+                        <div class="col-xs-2"></div>
+                        <div class="col-xs-8 allTags">
+                            <p><span class="thetag">{{hashtg}}</span><span class="pull-right">{{count}}</span></p>    
                         </div>
-                        <div class="col-sm-2"></div>
+                        <div class="col-xs-2"></div>
                     </div>
                     {% endfor %}
-                </div>    
+                </div>
+
                 <div class="completedActive">
-                    <div class="row text-left">
-                        <div class="col-sm-2"></div>
-                        <div class="col-sm-8">
-                            <p> No tasks completed yet. </span></p>    
+                    {% if tdone == [] %}
+                        <div class="row text-left completedTodo">
+                            <div class="col-xs-2"></div>
+                            <div class="col-xs-8">
+                                <p> No tasks completed yet. </span></p>    
+                            </div>
+                            <div class="col-xs-2"></div>
                         </div>
-                        <div class="col-sm-2"></div>
-                    </div>
+                    {% else %}
+                        {% for todo_done in tdone %}
+                            <div class="row text-left">
+                                <div id="{{todo_done.id}}" class="col-xs-1 times"><a href="#"><i class="fa fa-undo"></i></a></div>
+                                <div id="{{todo_done.id}}" class="col-xs-1 trash"><a href="#"><i class="fa fa-trash-o"></i></a></div>
+                                
+                                <div class="col-xs-7">
+                                    <p> {{todo_done.description}} <span class="pull-right"></span></p>    
+                                </div>
+                                <div class="col-xs-3 text-center hashtags">{{todo_done.hashtag}}</div>
+                            </div>
+                        {% endfor %}
+                    {% endif %}
                 </div>
             </div>
             
@@ -61,22 +76,25 @@
             <div class="todoContainer">
                 <div class="subheaderDiv">
                     {% if sz == 1 %}
-                        <p class="subheader"><b>{{sz}} TASK</b></p>
+                        <p class="subheader"><b><span class="tasksize"></span> TASK</b></p>
                     {% else %}
-                        <p class="subheader"><b>{{sz}} TASKS</b></p>
+                        <p class="subheader"><b>TASKS</b></p>
                     {% endif %}
                         
                 </div>
                 
                 <ul class="todos list-unstyled">
                     {% if td == [] %}
-                        <p>No tasks remaining. <i class="fa fa-smile-o"></i></p>
+                    <li class="col-xs-12 text-center">
+                            No tasks remaining. <i class="fa fa-smile-o"></i>
+                    </li>
                     {% else %}
                         {% for task in td %}
                             <li class="todo row">
-                                <div id="{{task.id}}" class="col-xs-2 check text-center"><i class="check fa fa-circle-o"></i></div>
-                                <div class="col-xs-7 description">{{task.description}}</div>
-                                <div class="col-xs-3 hashtags">{{task.hashtag}} </div> 
+                                <div id="{{task.id}}" class="col-xs-2 check text-center"><a href="#"><i class="check fa fa-circle-o"></i></a></div>
+                                <div class="col-xs-6 description">{{task.description}}</div>
+                                <div class="col-xs-3 hashtags text-right">{{task.hashtag}} </div> 
+                                <div id="{{task.id}}" class="col-xs-1 trash"><a href="#"><i class="fa fa-trash-o"></i></a></div>
                                 <!-- <div class="col-md-2 daysago">{{task.created_at}}</div> -->
                             </li>
                         {% endfor %}
@@ -85,7 +103,4 @@
             </div>
         </div>
     </div>
-
-
-
 {% endblock %}

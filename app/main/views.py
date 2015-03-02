@@ -25,7 +25,6 @@ def index():
 @login_required
 def profile():
     form = TodoForm()
-
     user_todo_all = current_user.todo.all()
     user_todo, user_todo_done = filter(lambda x: x.done == False, user_todo_all), filter(lambda x: x.done, user_todo_all) 
     user_todo_hashtags = Counter(list(map(lambda x: x.hashtag, user_todo)))
@@ -38,7 +37,7 @@ def profile():
         url = url_for('main.profile')
         return redirect(url)
     
-    return render_template("profile.html", form = form, td = user_todo, hsh = user_todo_hashtags, sz = len(user_todo))
+    return render_template("profile.html", form = form, td = user_todo, hsh = user_todo_hashtags, sz = len(user_todo), tdone = user_todo_done)
 
 def parse_todo(todo):
     todo = todo.strip().split()
@@ -46,9 +45,26 @@ def parse_todo(todo):
     tags = "".join(filter(lambda x: x.startswith("#"), todo))
     return words, tags
 
-@main.route('/done', methods=["POST"])
+@main.route('/done/<id>', methods=["POST"])
 @login_required 
-def done():
-    pass
+def done(id):
+    iid = int(id);
+    current_user.todo.filter_by(id = iid).first().toggleDone();
+    return url_for('main.profile')
+
+@main.route('/deleteTodo/<id>', methods=["POST"])
+@login_required
+def deleteTodo(id):
+    iid = int(id)
+    db.session.query(Todo).filter_by(id = iid).delete()
+    db.session.commit()
+    return url_for('main.profile')
+
+
+
+
+
+
+
 
 
