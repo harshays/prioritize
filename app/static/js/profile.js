@@ -60,8 +60,18 @@ $(document).ready(function() {
 
     
     // active tab
+    if ($(".completedActive").children().length > 0) {
+        $('.tagsActive').css('display','none');
+        $('.completedActive').fadeIn('fast');
+        $('.leftNav li').removeClass('active');
+        $(".completed").addClass("active");
+    } else {
+        $('.completedActive').css('display','none');
+        $('.tagsActive').fadeIn('fast');
+        $('.leftNav li').removeClass('active');
+        $(".tags").addClass("active");        
+    }
 
-    $('.completedActive').css('display','none');
     $('.leftNav li').on('click', function() {
         $('.leftNav li').removeClass('active');
         $(this).addClass('active');
@@ -73,6 +83,8 @@ $(document).ready(function() {
             $('.completedActive').fadeIn('fast');
         }
     });
+
+    // hover checkbox
 
     $('.todo').hover(function() {
         $(this).find('.check').css({
@@ -86,8 +98,9 @@ $(document).ready(function() {
 
 
     // change checkbox
+
     $(".check").on('click', function() {
-        $(this).off('click');
+        //$(this).off('click');
         var post_url = "/done/"+$(this).get(0).id;
         var fa = '<i class="fa fa-circle check-done animated fadeIn"></i>';
         $(this).text("");
@@ -99,6 +112,7 @@ $(document).ready(function() {
             contentType: "application/json; chartype=utf-8",
             url: post_url,
             success: function(response) {
+                console.log(response);
                 window.location.href = response;
             }
         });
@@ -114,6 +128,7 @@ $(document).ready(function() {
             contentType: "application/json; chartype=utf-8",
             url: post_url,
             success: function(response) {
+                console.log(response);
                 window.location.href = response;
             }
         });
