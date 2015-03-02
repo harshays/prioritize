@@ -74,6 +74,12 @@ class Todo(db.Model):
         db.session.add(self)
         db.session.commit()
         return self
+
+    def toggleDone(self):
+        self.done = not self.done 
+        return self 
+    
+
     
 
 
