@@ -50,6 +50,7 @@ def parse_todo(todo):
 def done(id):
     iid = int(id);
     current_user.todo.filter_by(id = iid).first().toggleDone();
+    db.session.commit()
     return url_for('main.profile')
 
 @main.route('/deleteTodo/<id>', methods=["POST"])
