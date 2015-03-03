@@ -47,8 +47,8 @@
             {{ current_user.username }} <span class="caret"></span>
             </a>
             <ul class="dropdown-menu" role="menu">
-                <li role="presentation"><a href="{{url_for('main.index')}}"> <i class="fa fa-cog"></i> </a></li>
-                <li role="presentation"><a href="{{url_for('auth.logout')}}"><i class="fa fa-sign-out"></i></a></li>
+                <!--<li role="presentation"><a href="{{url_for('main.index')}}"> <i class="fa fa-cog"></i> </a></li>-->
+                <li role="presentation"><a href="{{url_for('auth.logout')}}"><i class="fa fa-sign-out"></i>Logout</a></li>
             </ul>
         </li>
           {% else %}
