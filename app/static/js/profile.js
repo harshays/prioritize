@@ -167,6 +167,7 @@ $(document).ready(function() {
     }
 
 
+
     $(".allTags").on("click", function() {
         $(".allTags").removeClass("activeTag");
         $(this).addClass("activeTag");
@@ -174,6 +175,39 @@ $(document).ready(function() {
         filterByTag(thetag);
     });
 
+    // double click edit todo
+
+    $('.todo').dblclick(function() {
+        var id = $(this).find('.check').attr('id');
+        localStorage.setItem('id',id);
+        var todo = $(this).find('.description').text(); $(this).find('.description').text("");
+        var hashtags = $(this).find('.hashtags').text(); $(this).find('.hashtags').text("");
+        var editform = "<input type='text'/> <button class='btn btn-default editbtn'>Edit</button>";
+        $(this).find('.description').append(editform);
+    });
+
+    $(".todos").on("click",".editbtn", function() {
+        var $parent = $('.editbtn').parent().parent();
+        var task_input = $(".editbtn").prev().val();
+        var id = localStorage.getItem('id');
+        var post_url = "/edit";
+        var data = {
+            id:id,
+            task:task_input
+        };
+        $.ajax({
+            url: post_url,
+            type: "POST",
+            data: JSON.stringify(data),
+            contentType: "application/json",
+            success: function(resp) {
+                $($parent).find('input').remove();
+                $($parent).find('button').remove();
+                $($parent).find('.description').text(resp["task"]);
+                $($parent).find('.hashtags').text(resp["hashtags"]);
+            }
+        });
+    });
 });
 
 

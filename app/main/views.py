@@ -1,4 +1,4 @@
-from flask import redirect, render_template, flash, g, session, url_for, request
+from flask import redirect, render_template, flash, g, session, url_for, request, jsonify
 from flask.ext.login import current_user, login_required
 from . import main
 from .forms import TodoForm
@@ -63,6 +63,17 @@ def deleteTodo(id):
     db.session.query(Todo).filter_by(id = iid).delete()
     db.session.commit()
     return url_for('main.profile')
+
+@main.route('/edit', methods=["POST"])
+@login_required 
+def editTodo():
+    id = request.json['id']
+    task_input = request.json['task']
+    task, hashtags = parse_todo(task_input)
+    current_user.todo.filter_by(id = id).first().editTodo(task, hashtags)
+    resp = {'url':url_for('main.profile'), 'task':task, 'hashtags':hashtags}
+    return jsonify(resp)
+
 
 
 

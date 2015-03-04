@@ -6,12 +6,17 @@
 
 {% block js %}
     <script src="{{url_for('static', filename='js/index.js') }}"> </script>
+    <script async defer id="github-bjs" src="https://buttons.github.io/buttons.js"></script>
 {% endblock %}
 
 {% block body %}
     <div class="row main">
             <p class="header"> Prioritize<span>.</span></p>
             <a href="/auth/register"><button type="button" class="btn btn-primary button">Sign up</button></a>      
+    </div>
+    <div class="row githubbuttons text-center">
+        <a class="github-button" href="https://github.com/harshays/prioritize" data-icon="octicon-star" data-style="mega" data-count-href="/harshays/prioritize/stargazers" data-count-api="/repos/harshays/prioritize">Star it on Github</a>
+
     </div>
 {% endblock %}
 

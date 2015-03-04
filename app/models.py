@@ -78,6 +78,11 @@ class Todo(db.Model):
     def toggleDone(self):
         self.done = not self.done 
         return self 
+
+    def editTodo(self, task, hashtags):
+        self.description = task
+        self.hashtag = hashtags
+        return self 
     
 
     

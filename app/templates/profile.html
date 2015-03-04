@@ -1,5 +1,14 @@
 {% extends "base.html" %}
 
+{% block navigation %}
+    <ul class="nav nav-tabs">
+        <li role="appname" class="inactive"><a href="{{url_for('main.profile')}}">{{ current_user.username }}</a></li>
+        <li role="presentation" class="pull-right"><a href="{{url_for('auth.logout')}}">Logout</a></li>
+        <li role="presentation" class="pull-right"><a href="{{url_for('main.index')}}"> <i class="fa fa-cog"></i> </a></li>
+        <li role="appname" class="help pull-right"><a href=""><i class="fa fa-question"></i></a></li>
+    </ul>
+{% endblock %}
+
 {% block css %}
     <link rel="stylesheet" type="text/css" href="{{url_for('static', filename='css/profile.css') }}">
 {% endblock %}

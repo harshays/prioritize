@@ -8,7 +8,7 @@ db = SQLAlchemy()
 login_manager = LoginManager()
 bootstrap = Bootstrap()
 
-login_manager.session_protection = "strong"
+login_manager.session_protection = "basic"
 login_manager.login_view = "auth.login"
 
 
