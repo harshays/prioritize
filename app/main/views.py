@@ -70,7 +70,8 @@ def editTodo():
     id = request.json['id']
     task_input = request.json['task']
     task, hashtags = parse_todo(task_input)
-    current_user.todo.filter_by(id = id).first().editTodo(task, hashtags)
+    current_user.todo.filter_by(id = id).first().editTodo(task, hashtags).save()
+    db.session.commit()
     resp = {'url':url_for('main.profile'), 'task':task, 'hashtags':hashtags}
     return jsonify(resp)
 
