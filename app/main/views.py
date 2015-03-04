@@ -27,7 +27,10 @@ def profile():
     form = TodoForm()
     user_todo_all = current_user.todo.all()
     user_todo, user_todo_done = filter(lambda x: x.done == False, user_todo_all), filter(lambda x: x.done, user_todo_all) 
-    user_todo_hashtags = Counter(list(map(lambda x: x.hashtag, user_todo)))
+    user_hashtags_raw = [x.hashtag for x in user_todo]
+    user_hashtags_split = [split_tag for hashtag in user_hashtags_raw for split_tag in hashtag.replace("#"," #").split() if split_tag != ""]
+    user_todo_hashtags = Counter(user_hashtags_split)
+    tags_size = sum(user_todo_hashtags.values())
     del user_todo_hashtags[""]
     
     if request.method == "POST" and form.validate_on_submit():
@@ -37,7 +40,7 @@ def profile():
         url = url_for('main.profile')
         return redirect(url)
     
-    return render_template("profile.html", form = form, td = user_todo, hsh = user_todo_hashtags, sz = len(user_todo), tdone = user_todo_done)
+    return render_template("profile.html", form = form, td = user_todo, hsh = user_todo_hashtags, sz = tags_size, tdone = user_todo_done)
 
 def parse_todo(todo):
     todo = todo.strip().split()
