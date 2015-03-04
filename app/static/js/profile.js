@@ -58,20 +58,8 @@ $(document).ready(function() {
     $('.form-group').css('display','inline-block');
     $('.button-div').css('display','inline-block');
 
-    
-    // active tab
-    if ($(".completedActive").children().length > 0) {
-        $('.tagsActive').css('display','none');
-        $('.completedActive').fadeIn('fast');
-        $('.leftNav li').removeClass('active');
-        $(".completed").addClass("active");
-    } else {
-        $('.completedActive').css('display','none');
-        $('.tagsActive').fadeIn('fast');
-        $('.leftNav li').removeClass('active');
-        $(".tags").addClass("active");        
-    }
 
+    $('.completedActive').css('display','none');
     $('.leftNav li').on('click', function() {
         $('.leftNav li').removeClass('active');
         $(this).addClass('active');
@@ -182,7 +170,8 @@ $(document).ready(function() {
         localStorage.setItem('id',id);
         var todo = $(this).find('.description').text(); $(this).find('.description').text("");
         var hashtags = $(this).find('.hashtags').text(); $(this).find('.hashtags').text("");
-        var editform = "<input type='text'/> <button class='btn btn-default editbtn'>Edit</button>";
+        var old = todo + " " + hashtags;
+        var editform = "<input type='text' value='"+old+"'/> <button class='btn btn-default editbtn'>Edit</button>";
         $(this).find('.description').append(editform);
     });
 
@@ -205,6 +194,7 @@ $(document).ready(function() {
                 $($parent).find('button').remove();
                 $($parent).find('.description').text(resp["task"]);
                 $($parent).find('.hashtags').text(resp["hashtags"]);
+                window.location.href = resp["url"];
             }
         });
     });
