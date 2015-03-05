@@ -25,8 +25,8 @@ def index():
 @login_required
 def profile():
     form = TodoForm()
-    user_todo_all = current_user.todo.all()
-    user_todo, user_todo_done = filter(lambda x: x.done == False, user_todo_all), filter(lambda x: x.done, user_todo_all) 
+    user_todo_all = sorted(current_user.todo.all(), key=lambda x: x.created_at)
+    user_todo, user_todo_done = filter(lambda x: x.done == False, user_todo_all), filter(lambda x: x.done == True, user_todo_all) 
     user_hashtags_raw = [x.hashtag for x in user_todo]
     user_hashtags_split = [split_tag for hashtag in user_hashtags_raw for split_tag in hashtag.replace("#"," #").split() if split_tag != ""]
     user_todo_hashtags = Counter(user_hashtags_split)
@@ -74,13 +74,3 @@ def editTodo():
     db.session.commit()
     resp = {'url':url_for('main.profile'), 'task':task, 'hashtags':hashtags}
     return jsonify(resp)
-
-
-
-
-
-
-
-
-
-

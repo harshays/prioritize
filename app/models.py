@@ -56,12 +56,12 @@ class User(UserMixin, db.Model):
 
 class Todo(db.Model):
     __tablename__ = "tsodo"
-    id = db.Column(db.Integer, primary_key = True)
+    id = db.Column(db.Integer, index = True, primary_key = True)
     description = db.Column(db.String(100))
     hashtag = db.Column(db.String(100), default = "")
     # priority = db.Column(db.Integer)
     done = db.Column(db.Boolean, default = False)
-    created_at = db.Column(db.DateTime, index = True, default = datetime.utcnow)
+    created_at = db.Column(db.DateTime,  default = datetime.utcnow)
     creator = db.Column(db.String(100), db.ForeignKey('user.username'))
 
     def __init__(self, description, hashtag = "", created_at = datetime.utcnow(), creator = current_user):

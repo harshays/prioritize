@@ -123,6 +123,7 @@ $(document).ready(function() {
     });
 
     // delete completed task
+
     $(".trash").on("click", function() {
         var post_url = "/deleteTodo/"+$(this).get(0).id;
         $(this).parent().fadeOut();
@@ -166,6 +167,7 @@ $(document).ready(function() {
     // double click edit todo
 
     $('.todo').dblclick(function() {
+        $('.todos').find(".editbtn").trigger("click");
         var id = $(this).find('.check').attr('id');
         localStorage.setItem('id',id);
         var todo = $(this).find('.description').text(); $(this).find('.description').text("");
@@ -175,7 +177,7 @@ $(document).ready(function() {
         $(this).find('.description').append(editform);
     });
 
-    $(".todos").on("click",".editbtn", function() {
+    $(".todo").on("click",".editbtn", function() {
         var $parent = $('.editbtn').parent().parent();
         var task_input = $(".editbtn").prev().val();
         var id = localStorage.getItem('id');
@@ -197,6 +199,12 @@ $(document).ready(function() {
                 window.location.href = resp["url"];
             }
         });
+    });
+
+    $(".description").on("keyup","input", function(event) {
+        if (event.which == 13) {
+            $(this).next().trigger("click");
+        }
     });
 });
 
