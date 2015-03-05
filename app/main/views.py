@@ -30,7 +30,7 @@ def profile():
     user_hashtags_raw = [x.hashtag for x in user_todo]
     user_hashtags_split = [split_tag for hashtag in user_hashtags_raw for split_tag in hashtag.replace("#"," #").split() if split_tag != ""]
     user_todo_hashtags = Counter(user_hashtags_split)
-    tags_size = sum(user_todo_hashtags.values())
+    tags_size = len(user_todo)
     del user_todo_hashtags[""]
     
     if request.method == "POST" and form.validate_on_submit():
