@@ -16,17 +16,13 @@
     <meta name="viewport" content="width=device-width,maximum-scale=1.0"/>
     <meta http-eqiv="content-type" content="text/html; charset=utf-8"/>
     <link rel="icon" type="image/png" href="{{url_for('static',filename='./img/favicon.ico')}}">
-    <link href='http://fonts.googleapis.com/css?family=Raleway:400,200,100' rel='stylesheet' type='text/css'>
+    <link href='//fonts.googleapis.com/css?family=Raleway:400,200,100' rel='stylesheet' type='text/css'>
 
-    <!-- Scripts -->
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
-    <script type="text/javascript" src="{{url_for('static',filename='./js/base.js')}}"></script>
-    {% block js %} {% endblock %}
+    
 
     <!-- Lib -->
     <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
     <!-- <link rel="stylesheet" type="text/css" href="{{url_for('static',filename='./bower_components/bootstrap/dist/css/bootstrap.min.css')}}"> -->
     
 
@@ -62,4 +58,10 @@
     <div class="container-fluid animated fadeIn">
         {% block body %} {% endblock %}
     </div>
+
+    <!-- Scripts -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="{{url_for('static',filename='./js/base.js')}}"></script>
+    {% block js %} {% endblock %}
 </body>

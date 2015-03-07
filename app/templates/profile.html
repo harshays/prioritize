@@ -4,7 +4,6 @@
     <ul class="nav nav-tabs">
         <li role="appname" class="inactive"><a href="{{url_for('main.profile')}}">{{ current_user.username }}</a></li>
         <li role="presentation" class="pull-right"><a href="{{url_for('auth.logout')}}">Logout</a></li>
-        <li role="presentation" class="pull-right"><a href="{{url_for('main.index')}}"> <i class="fa fa-cog"></i> </a></li>
         <li role="appname" class="help pull-right"><a href=""><i class="fa fa-question"></i></a></li>
     </ul>
 {% endblock %}
@@ -15,10 +14,10 @@
 {% endblock %}
 
 {% block js %}
+<script src="{{url_for('static', filename='bower_components/bootstrap-tour.min.js')}}"></script>
 <script src="{{url_for('static', filename='bower_components/moment.js') }}"> </script>
 <script src="{{url_for('static', filename='js/profile.js') }}"> </script>
-<script src="{{url_for('static', filename='bower_components/bootstrap-tour.min.js')}}"></script>
-<script src="{{url_for('static', filename='js/profile_tour.js')}}"></script>
+
 {% endblock %}
 
 
