@@ -11,11 +11,14 @@
 
 {% block css %}
     <link rel="stylesheet" type="text/css" href="{{url_for('static', filename='css/profile.css') }}">
+    <link rel="stylesheet" href="text/css" href="{{url_for('static', filename='bower_components/bootstrap-tour/build/css/bootstrap-tour.min.css')}}">
 {% endblock %}
 
 {% block js %}
 <script src="{{url_for('static', filename='bower_components/moment.js') }}"> </script>
-    <script src="{{url_for('static', filename='js/profile.js') }}"> </script>
+<script src="{{url_for('static', filename='js/profile.js') }}"> </script>
+<script src="{{url_for('static', filename='bower_components/bootstrap-tour/build/js/bootstrap-tour.min.js')}}"></script>
+<script src="{{url_for('static', filename='js/profile_tour.js')}}"></script>
 {% endblock %}
 
 
@@ -27,14 +30,14 @@
                 <p class="day"></p>
             </div>
             <br>
-            <div class="addTodo text-center">
+            <div id="step1" class="addTodo text-center">
                 {{ wtf.quick_form(form) }}
             </div>
 
             <div class="utils">
                 <ul class="nav nav-pills nav-justified leftNav">
-                    <li class="active tags"><a href="#">Tags</a></li>
-                    <li class="completed"><a href="#">Tasks Completed</a></li>
+                    <li id="step3" class="active tags"><a href="#">Tags</a></li>
+                    <li id="step4" class="completed"><a href="#">Tasks Completed</a></li>
                 </ul>
                 <div class="tagsActive">
                     <div class="row text-left">
@@ -92,7 +95,7 @@
                         
                 </div>
                 
-                <ul class="todos list-unstyled">
+                <ul id="step2" class="todos list-unstyled">
                     {% if td == [] %}
                     <li class="col-xs-12 text-center">
                             No tasks remaining. <i class="fa fa-smile-o"></i>
