@@ -1,4 +1,7 @@
 var tour = new Tour({
+    onEnd: function() {
+        $(".tags").trigger('click');
+    },
     steps: [
     {
         element: "#step1",
@@ -23,9 +26,6 @@ var tour = new Tour({
         element:"#step4",
         title: "Completed tasks",
         content:"View, undo or delete completed tasks",
-        onNext: function(tour) {
-            $('.tags').trigger('click');
-        }
     }
 ]});
 
